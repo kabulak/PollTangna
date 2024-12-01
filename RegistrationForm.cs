@@ -15,17 +15,41 @@ namespace PollingSystem
         public RegistrationForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;  // Make sure this is set to true
+            this.ControlBox = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+
+            // Wire the KeyDown event to the handler
+            this.KeyDown += new KeyEventHandler(RegistrationForm_KeyDown);
         }
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
 
         }
+        private void RegistrationForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Close the form when the ESC key is pressed
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+    
 
-        private void btnRegisterSubmit_Click(object sender, EventArgs e)
+
+private void btnRegisterSubmit_Click(object sender, EventArgs e)
         {
             string newUsername = txtNewUsername.Text.Trim();
             string newPassword = txtNewPassword.Text.Trim();
+
+            // Check if the username or password is empty
+            if (string.IsNullOrEmpty(newUsername) || string.IsNullOrEmpty(newPassword))
+            {
+                MessageBox.Show("Username and password cannot be empty!");
+                return; // Exit the method if any field is empty
+            }
 
             try
             {

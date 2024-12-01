@@ -56,12 +56,16 @@
             // 
             // btnRegisterSubmit
             // 
+            this.btnRegisterSubmit.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRegisterSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegisterSubmit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnRegisterSubmit.ForeColor = System.Drawing.Color.White;
             this.btnRegisterSubmit.Location = new System.Drawing.Point(85, 80);
             this.btnRegisterSubmit.Name = "btnRegisterSubmit";
-            this.btnRegisterSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnRegisterSubmit.Size = new System.Drawing.Size(78, 30);
             this.btnRegisterSubmit.TabIndex = 15;
             this.btnRegisterSubmit.Text = "Register";
-            this.btnRegisterSubmit.UseVisualStyleBackColor = true;
+            this.btnRegisterSubmit.UseVisualStyleBackColor = false;
             this.btnRegisterSubmit.Click += new System.EventHandler(this.btnRegisterSubmit_Click);
             // 
             // lblRegErrorMessage
@@ -91,7 +95,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Khaki;
+            this.ClientSize = new System.Drawing.Size(416, 151);
             this.Controls.Add(this.lblNewPass);
             this.Controls.Add(this.lblNewUser);
             this.Controls.Add(this.btnRegisterSubmit);

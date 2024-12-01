@@ -24,12 +24,29 @@ namespace PollingSystem
         public LoginForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;  // Make sure this is set to true
+            this.ControlBox = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+
+            // Wire the KeyDown event to the handler
+            this.KeyDown += new KeyEventHandler(LoginForm_KeyDown);
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Close the form when the ESC key is pressed
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
