@@ -182,8 +182,31 @@ namespace PollingSystem
         {
 
         }
+
+        private void btnResetResults_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = cmbPolls.SelectedIndex;
+            if (selectedIndex >= 0)
+            {
+                Poll selectedPoll = PollManager.Polls[selectedIndex];
+
+                // Reset votes for the selected poll
+                selectedPoll.ResetVotes();
+
+                // Update the chart to reflect the reset
+                UpdatePollResultsChart(selectedPoll);
+
+                MessageBox.Show("Poll results have been reset.");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+    }
+
     
     
 

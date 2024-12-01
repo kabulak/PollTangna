@@ -37,6 +37,14 @@ namespace PollingSystem
             }
         }
 
+        public void ResetVotes()
+        {
+            foreach (var choice in Choices)
+            {
+                Votes[choice] = 0;  // Reset all votes to 0
+            }
+        }
+
         public string GetResults()
         {
             string results = "Results:\n";
