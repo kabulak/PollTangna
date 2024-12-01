@@ -16,7 +16,13 @@ namespace PollingSystem
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;  // Make sure this is set to true
+            this.ControlBox = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
 
+            // Wire the KeyDown event to the handler
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
         private void lblCreatePoll_Click(object sender, EventArgs e)
@@ -135,11 +141,11 @@ namespace PollingSystem
 
         }
 
-        
-    
 
 
-       
+
+
+
 
         private void lblResults_Click(object sender, EventArgs e)
         {
@@ -211,9 +217,17 @@ namespace PollingSystem
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();  // Display Form3 as a modal dialog
         }
+    
+
+
+
+private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Close the form when the ESC key is pressed
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
-
-
-
-
