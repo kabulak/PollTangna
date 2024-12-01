@@ -207,13 +207,13 @@
             this.pollResultsChart.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.pollResultsChart.Legends.Add(legend2);
-            this.pollResultsChart.Location = new System.Drawing.Point(286, 135);
+            this.pollResultsChart.Location = new System.Drawing.Point(263, 137);
             this.pollResultsChart.Name = "pollResultsChart";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.pollResultsChart.Series.Add(series2);
-            this.pollResultsChart.Size = new System.Drawing.Size(236, 140);
+            this.pollResultsChart.Size = new System.Drawing.Size(310, 140);
             this.pollResultsChart.TabIndex = 14;
             this.pollResultsChart.Text = "chart1";
             // 
@@ -240,7 +240,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "POLLING";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollResultsChart)).EndInit();

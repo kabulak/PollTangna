@@ -90,13 +90,45 @@ namespace PollingSystem
                     {
                         selectedPoll.Vote(rb.Text);
                         MessageBox.Show("Vote submitted successfully!");
+
+                        // Update the chart with new data after the vote
+                        UpdatePollResultsChart(selectedPoll);
                         break;
                     }
                 }
             }
         }
 
+        private void UpdatePollResultsChart(Poll selectedPoll)
+        {
+            // Clear the existing chart series and data
+            pollResultsChart.Series.Clear();
+            pollResultsChart.ChartAreas.Clear();
 
+            // Create a new chart area for the chart
+            ChartArea chartArea = new ChartArea();
+            pollResultsChart.ChartAreas.Add(chartArea);
+
+            // Create a new series for displaying the results
+            Series series = new Series
+            {
+                Name = "Poll Results",
+                IsValueShownAsLabel = true,
+                ChartType = SeriesChartType.Bar
+            };
+            pollResultsChart.Series.Add(series);
+
+            // Add the choices and their corresponding vote counts to the chart
+            foreach (var choice in selectedPoll.Choices)
+            {
+                int voteCount = selectedPoll.Votes[choice];
+                series.Points.AddXY(choice, voteCount);
+            }
+
+            // Set chart labels and title
+            pollResultsChart.Titles.Clear();
+            pollResultsChart.Titles.Add($"Results for: {selectedPoll.Question}");
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
