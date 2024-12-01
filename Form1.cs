@@ -86,22 +86,45 @@ namespace PollingSystem
 
         private void btnVote_Click(object sender, EventArgs e)
         {
+            // Check if the user is logged in
+            if (!User.IsLoggedIn)
+            {
+                MessageBox.Show("You must log in to perform this action.");
+
+                // Open the LoginForm if the user is not logged in
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show(); // Show the login form
+
+                return; // Exit the method so that the vote action does not happen
+            }
+
+            // Proceed with voting functionality if the user is logged in
             int selectedIndex = cmbPolls.SelectedIndex;
+
             if (selectedIndex >= 0)
             {
+                // Get the selected poll from PollManager
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
+
+                // Loop through the radio buttons in the group box (choices for the poll)
                 foreach (RadioButton rb in grpChoices.Controls)
                 {
+                    // Check if this radio button is selected
                     if (rb.Checked)
                     {
+                        // Register the vote for the selected choice
                         selectedPoll.Vote(rb.Text);
                         MessageBox.Show("Vote submitted successfully!");
 
                         // Update the chart with new data after the vote
                         UpdatePollResultsChart(selectedPoll);
-                        break;
+                        break; // Exit the loop once a vote is submitted
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select a poll to vote on.");
             }
         }
 
