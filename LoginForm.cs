@@ -28,7 +28,8 @@ namespace PollingSystem
             this.ControlBox = false;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-
+            this.StartPosition = FormStartPosition.CenterScreen; // Optional: Center the form on the screen
+            this.FormBorderStyle = FormBorderStyle.FixedDialog; // Disable resizing
             // Wire the KeyDown event to the handler
             this.KeyDown += new KeyEventHandler(LoginForm_KeyDown);
         }
