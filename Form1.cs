@@ -204,9 +204,16 @@ namespace PollingSystem
         {
 
         }
-    }
-    }
 
-    
-    
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            // Open the About form when the About button is clicked
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();  // Display Form3 as a modal dialog
+        }
+    }
+}
+
+
+
 

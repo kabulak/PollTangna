@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblCreatePoll = new System.Windows.Forms.Label();
             this.lblPollQuestion = new System.Windows.Forms.Label();
             this.lblChoices = new System.Windows.Forms.Label();
@@ -50,11 +50,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollResultsChart)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCreatePoll
@@ -62,7 +65,7 @@
             this.lblCreatePoll.AutoSize = true;
             this.lblCreatePoll.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblCreatePoll.ForeColor = System.Drawing.Color.White;
-            this.lblCreatePoll.Location = new System.Drawing.Point(10, 6);
+            this.lblCreatePoll.Location = new System.Drawing.Point(10, 0);
             this.lblCreatePoll.Name = "lblCreatePoll";
             this.lblCreatePoll.Size = new System.Drawing.Size(121, 25);
             this.lblCreatePoll.TabIndex = 0;
@@ -74,7 +77,7 @@
             this.lblPollQuestion.AutoSize = true;
             this.lblPollQuestion.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblPollQuestion.ForeColor = System.Drawing.Color.White;
-            this.lblPollQuestion.Location = new System.Drawing.Point(7, 6);
+            this.lblPollQuestion.Location = new System.Drawing.Point(7, 0);
             this.lblPollQuestion.Name = "lblPollQuestion";
             this.lblPollQuestion.Size = new System.Drawing.Size(130, 25);
             this.lblPollQuestion.TabIndex = 1;
@@ -84,23 +87,24 @@
             // 
             this.lblChoices.AutoSize = true;
             this.lblChoices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblChoices.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblChoices.Location = new System.Drawing.Point(663, 70);
+            this.lblChoices.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblChoices.ForeColor = System.Drawing.Color.White;
+            this.lblChoices.Location = new System.Drawing.Point(16, -1);
             this.lblChoices.Name = "lblChoices";
-            this.lblChoices.Size = new System.Drawing.Size(56, 19);
+            this.lblChoices.Size = new System.Drawing.Size(79, 25);
             this.lblChoices.TabIndex = 2;
             this.lblChoices.Text = "Choices";
             // 
             // txtPollQuestion
             // 
-            this.txtPollQuestion.Location = new System.Drawing.Point(12, 40);
+            this.txtPollQuestion.Location = new System.Drawing.Point(16, 115);
             this.txtPollQuestion.Name = "txtPollQuestion";
             this.txtPollQuestion.Size = new System.Drawing.Size(211, 20);
             this.txtPollQuestion.TabIndex = 3;
             // 
             // txtChoice
             // 
-            this.txtChoice.Location = new System.Drawing.Point(12, 69);
+            this.txtChoice.Location = new System.Drawing.Point(16, 144);
             this.txtChoice.Name = "txtChoice";
             this.txtChoice.Size = new System.Drawing.Size(210, 20);
             this.txtChoice.TabIndex = 4;
@@ -113,7 +117,7 @@
             this.lstChoices.ForeColor = System.Drawing.SystemColors.InfoText;
             this.lstChoices.FormattingEnabled = true;
             this.lstChoices.ItemHeight = 17;
-            this.lstChoices.Location = new System.Drawing.Point(13, 137);
+            this.lstChoices.Location = new System.Drawing.Point(-1, 201);
             this.lstChoices.Name = "lstChoices";
             this.lstChoices.Size = new System.Drawing.Size(227, 138);
             this.lstChoices.TabIndex = 5;
@@ -124,7 +128,7 @@
             this.btnAddChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddChoice.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddChoice.ForeColor = System.Drawing.Color.White;
-            this.btnAddChoice.Location = new System.Drawing.Point(76, 100);
+            this.btnAddChoice.Location = new System.Drawing.Point(59, 168);
             this.btnAddChoice.Name = "btnAddChoice";
             this.btnAddChoice.Size = new System.Drawing.Size(91, 31);
             this.btnAddChoice.TabIndex = 6;
@@ -138,7 +142,7 @@
             this.btnCreatePoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreatePoll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnCreatePoll.ForeColor = System.Drawing.Color.White;
-            this.btnCreatePoll.Location = new System.Drawing.Point(76, 290);
+            this.btnCreatePoll.Location = new System.Drawing.Point(56, 354);
             this.btnCreatePoll.Name = "btnCreatePoll";
             this.btnCreatePoll.Size = new System.Drawing.Size(97, 27);
             this.btnCreatePoll.TabIndex = 7;
@@ -150,7 +154,7 @@
             // 
             this.cmbPolls.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPolls.FormattingEnabled = true;
-            this.cmbPolls.Location = new System.Drawing.Point(617, 40);
+            this.cmbPolls.Location = new System.Drawing.Point(636, 117);
             this.cmbPolls.Name = "cmbPolls";
             this.cmbPolls.Size = new System.Drawing.Size(152, 25);
             this.cmbPolls.TabIndex = 8;
@@ -159,7 +163,7 @@
             // grpChoices
             // 
             this.grpChoices.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.grpChoices.Location = new System.Drawing.Point(595, 101);
+            this.grpChoices.Location = new System.Drawing.Point(607, 176);
             this.grpChoices.Name = "grpChoices";
             this.grpChoices.Size = new System.Drawing.Size(193, 176);
             this.grpChoices.TabIndex = 9;
@@ -172,7 +176,7 @@
             this.btnVote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVote.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnVote.ForeColor = System.Drawing.Color.White;
-            this.btnVote.Location = new System.Drawing.Point(644, 287);
+            this.btnVote.Location = new System.Drawing.Point(667, 359);
             this.btnVote.Name = "btnVote";
             this.btnVote.Size = new System.Drawing.Size(95, 33);
             this.btnVote.TabIndex = 10;
@@ -187,7 +191,7 @@
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(263, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 37);
+            this.panel1.Size = new System.Drawing.Size(310, 25);
             this.panel1.TabIndex = 12;
             // 
             // label1
@@ -195,7 +199,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(91, 9);
+            this.label1.Location = new System.Drawing.Point(91, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 25);
             this.label1.TabIndex = 0;
@@ -207,7 +211,7 @@
             this.lblResults.AutoSize = true;
             this.lblResults.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblResults.ForeColor = System.Drawing.Color.White;
-            this.lblResults.Location = new System.Drawing.Point(111, 1);
+            this.lblResults.Location = new System.Drawing.Point(122, -2);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(74, 25);
             this.lblResults.TabIndex = 13;
@@ -218,17 +222,17 @@
             // 
             this.pollResultsChart.BackColor = System.Drawing.Color.Aqua;
             this.pollResultsChart.BorderlineColor = System.Drawing.Color.WhiteSmoke;
-            chartArea5.Name = "ChartArea1";
-            this.pollResultsChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.pollResultsChart.Legends.Add(legend5);
-            this.pollResultsChart.Location = new System.Drawing.Point(263, 137);
+            chartArea2.Name = "ChartArea1";
+            this.pollResultsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.pollResultsChart.Legends.Add(legend2);
+            this.pollResultsChart.Location = new System.Drawing.Point(263, 201);
             this.pollResultsChart.Name = "pollResultsChart";
             this.pollResultsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.pollResultsChart.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.pollResultsChart.Series.Add(series2);
             this.pollResultsChart.Size = new System.Drawing.Size(310, 140);
             this.pollResultsChart.TabIndex = 14;
             this.pollResultsChart.Text = "chart1";
@@ -239,7 +243,7 @@
             this.btnResetResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetResults.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetResults.ForeColor = System.Drawing.Color.White;
-            this.btnResetResults.Location = new System.Drawing.Point(379, 290);
+            this.btnResetResults.Location = new System.Drawing.Point(379, 354);
             this.btnResetResults.Name = "btnResetResults";
             this.btnResetResults.Size = new System.Drawing.Size(64, 32);
             this.btnResetResults.TabIndex = 15;
@@ -251,35 +255,60 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.SteelBlue;
             this.panel2.Controls.Add(this.lblResults);
-            this.panel2.Location = new System.Drawing.Point(263, 100);
+            this.panel2.Location = new System.Drawing.Point(263, 175);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(310, 31);
+            this.panel2.Size = new System.Drawing.Size(310, 20);
             this.panel2.TabIndex = 16;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.SteelBlue;
             this.panel3.Controls.Add(this.lblCreatePoll);
-            this.panel3.Location = new System.Drawing.Point(56, 3);
+            this.panel3.Location = new System.Drawing.Point(44, 85);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(145, 34);
+            this.panel3.Size = new System.Drawing.Size(145, 24);
             this.panel3.TabIndex = 17;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.SteelBlue;
             this.panel4.Controls.Add(this.lblPollQuestion);
-            this.panel4.Location = new System.Drawing.Point(617, 3);
+            this.panel4.Location = new System.Drawing.Point(648, 85);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(140, 34);
+            this.panel4.Size = new System.Drawing.Size(140, 25);
             this.panel4.TabIndex = 18;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel5.Controls.Add(this.lblChoices);
+            this.panel5.Location = new System.Drawing.Point(660, 146);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(113, 24);
+            this.panel5.TabIndex = 19;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbout.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbout.ForeColor = System.Drawing.Color.White;
+            this.btnAbout.Location = new System.Drawing.Point(691, 0);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(107, 53);
+            this.btnAbout.TabIndex = 20;
+            this.btnAbout.Text = "ABOUT";
+            this.btnAbout.UseVisualStyleBackColor = false;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(800, 347);
+            this.ClientSize = new System.Drawing.Size(800, 403);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.grpChoices);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -294,7 +323,6 @@
             this.Controls.Add(this.lstChoices);
             this.Controls.Add(this.txtChoice);
             this.Controls.Add(this.txtPollQuestion);
-            this.Controls.Add(this.lblChoices);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -309,6 +337,8 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,6 +365,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 
