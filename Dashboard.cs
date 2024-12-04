@@ -101,14 +101,21 @@ private void Form1_FormClosing(object sender, FormClosingEventArgs e)
             {
                 // Create and show Form1
                 Form1 form1 = new Form1();
-                form1.Show(); // Show Form1
+                form1.Show();
                 this.Hide();  // Optionally, hide the current Dashboard form
             }
             else if (selectedCategory == "About")
             {
                 // Open the About form as a modal dialog
                 AboutForm aboutForm = new AboutForm();
-                aboutForm.ShowDialog();  // Display AboutForm as a modal dialog
+                aboutForm.ShowDialog();
+            }
+            else if (selectedCategory == "News")
+            {
+                // Show NewsForm when "News" category is selected
+                NewsForm newsForm = new NewsForm();
+                newsForm.Show();  // Show NewsForm
+                this.Hide();  // Optionally, hide the current Dashboard form
             }
             else
             {
