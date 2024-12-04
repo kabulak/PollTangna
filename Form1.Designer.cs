@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblCreatePoll = new System.Windows.Forms.Label();
             this.lblPollQuestion = new System.Windows.Forms.Label();
             this.lblChoices = new System.Windows.Forms.Label();
@@ -51,7 +51,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnAbout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollResultsChart)).BeginInit();
             this.panel2.SuspendLayout();
@@ -222,17 +221,17 @@
             // 
             this.pollResultsChart.BackColor = System.Drawing.Color.Aqua;
             this.pollResultsChart.BorderlineColor = System.Drawing.Color.WhiteSmoke;
-            chartArea3.Name = "ChartArea1";
-            this.pollResultsChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.pollResultsChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.pollResultsChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.pollResultsChart.Legends.Add(legend1);
             this.pollResultsChart.Location = new System.Drawing.Point(263, 201);
             this.pollResultsChart.Name = "pollResultsChart";
             this.pollResultsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.pollResultsChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.pollResultsChart.Series.Add(series1);
             this.pollResultsChart.Size = new System.Drawing.Size(310, 140);
             this.pollResultsChart.TabIndex = 14;
             this.pollResultsChart.Text = "chart1";
@@ -287,27 +286,12 @@
             this.panel5.Size = new System.Drawing.Size(113, 24);
             this.panel5.TabIndex = 19;
             // 
-            // btnAbout
-            // 
-            this.btnAbout.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbout.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbout.ForeColor = System.Drawing.Color.White;
-            this.btnAbout.Location = new System.Drawing.Point(691, 0);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(107, 53);
-            this.btnAbout.TabIndex = 20;
-            this.btnAbout.Text = "ABOUT";
-            this.btnAbout.UseVisualStyleBackColor = false;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 403);
-            this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.grpChoices);
             this.Controls.Add(this.panel4);
@@ -366,7 +350,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnAbout;
     }
 }
 

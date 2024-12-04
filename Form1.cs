@@ -22,9 +22,17 @@ namespace PollingSystem
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen; // Optional: Center the form on the screen
             this.FormBorderStyle = FormBorderStyle.FixedDialog; // Disable resizing
+            this.FormClosing += Form1_FormClosing;
 
             // Wire the KeyDown event to the handler
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Show the Dashboard form when Form1 is closed
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
         }
 
         private void lblCreatePoll_Click(object sender, EventArgs e)
@@ -88,19 +96,7 @@ namespace PollingSystem
 
         private void btnVote_Click(object sender, EventArgs e)
         {
-            // Check if the user is logged in
-            if (!User.IsLoggedIn)
-            {
-                MessageBox.Show("You must log in to perform this action.");
-
-                // Open the LoginForm if the user is not logged in
-                LoginForm loginForm = new LoginForm();
-                loginForm.Show(); // Show the login form
-
-                return; // Exit the method so that the vote action does not happen
-            }
-
-            // Proceed with voting functionality if the user is logged in
+            // Proceed with voting functionality (no login check needed)
             int selectedIndex = cmbPolls.SelectedIndex;
 
             if (selectedIndex >= 0)
@@ -236,13 +232,8 @@ namespace PollingSystem
 
         }
 
-        private void btnAbout_Click(object sender, EventArgs e)
-        {
-            // Open the About form when the About button is clicked
-            AboutForm aboutForm = new AboutForm();
-            aboutForm.ShowDialog();  // Display Form3 as a modal dialog
-        }
-    
+        
+  
 
 
 

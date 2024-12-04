@@ -16,7 +16,14 @@ namespace PollingSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            // Show the Login Form
+            LoginnForm loginnForm = new LoginnForm();
+            if (loginnForm.ShowDialog() == DialogResult.OK)
+            {
+                // Proceed to the main form
+                Application.Run(new Dashboard());
+            }
         }
     }
 }
