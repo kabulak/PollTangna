@@ -36,35 +36,33 @@ namespace PollingSystem
                 return;
             }
 
-            // Check if username already exists in the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-                SqlCommand command = new SqlCommand(checkUserQuery, connection);
-                command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
-                int userCount = (int)command.ExecuteScalar();
 
-                if (userCount > 0)
+                // Check if the username already exists
+                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@Username", username);
+                int userExists = (int)checkCommand.ExecuteScalar();
+
+                if (userExists > 0)
                 {
-                    MessageBox.Show("Username already exists. Please choose a different one.", "Error");
+                    MessageBox.Show("Username already exists.", "Error");
                 }
                 else
                 {
-                    // Insert the new user into the database
-                    string insertQuery = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                    // Insert regular user (not an admin)
+                    string insertQuery = "INSERT INTO Users (Username, Password, IsAdmin) VALUES (@Username, @Password, 0)";
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@Username", username);
                     insertCommand.Parameters.AddWithValue("@Password", password);
                     insertCommand.ExecuteNonQuery();
 
-                    MessageBox.Show($"Registration successful for {username}! You can now log in.", "Success");
-                    txtUsername.Clear();
-                    txtPassword.Clear();
+                    MessageBox.Show($"Registration successful for {username}!", "Success");
                 }
             }
         }
-
 
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -104,7 +102,12 @@ namespace PollingSystem
                 }
             }
         }
+
+        private void btnOpenAdmin_Click(object sender, EventArgs e)
+        {
+            LoginAdminForm adminForm = new LoginAdminForm();
+            adminForm.Show();
+        }
     }
 }
-
 

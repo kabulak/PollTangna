@@ -1,4 +1,5 @@
-﻿namespace PollingSystem
+﻿
+namespace PollingSystem
 {
     partial class LoginnForm
     {
@@ -35,8 +36,9 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.btnSkip = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.btnOpenAdmin = new System.Windows.Forms.Button();
+            this.chkIsAdmin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -108,19 +110,6 @@
             this.txtUsername.Size = new System.Drawing.Size(211, 20);
             this.txtUsername.TabIndex = 11;
             // 
-            // btnSkip
-            // 
-            this.btnSkip.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSkip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSkip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSkip.ForeColor = System.Drawing.Color.White;
-            this.btnSkip.Location = new System.Drawing.Point(143, 142);
-            this.btnSkip.Name = "btnSkip";
-            this.btnSkip.Size = new System.Drawing.Size(94, 34);
-            this.btnSkip.TabIndex = 18;
-            this.btnSkip.Text = "Skip";
-            this.btnSkip.UseVisualStyleBackColor = false;
-            // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
@@ -129,13 +118,34 @@
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
             this.lblMessage.TabIndex = 19;
             // 
+            // btnOpenAdmin
+            // 
+            this.btnOpenAdmin.Location = new System.Drawing.Point(137, 171);
+            this.btnOpenAdmin.Name = "btnOpenAdmin";
+            this.btnOpenAdmin.Size = new System.Drawing.Size(82, 23);
+            this.btnOpenAdmin.TabIndex = 20;
+            this.btnOpenAdmin.Text = "LoginAdmin";
+            this.btnOpenAdmin.UseVisualStyleBackColor = true;
+            this.btnOpenAdmin.Click += new System.EventHandler(this.btnOpenAdmin_Click);
+            // 
+            // chkIsAdmin
+            // 
+            this.chkIsAdmin.AutoSize = true;
+            this.chkIsAdmin.Location = new System.Drawing.Point(139, 200);
+            this.chkIsAdmin.Name = "chkIsAdmin";
+            this.chkIsAdmin.Size = new System.Drawing.Size(29, 17);
+            this.chkIsAdmin.TabIndex = 21;
+            this.chkIsAdmin.Text = " ";
+            this.chkIsAdmin.UseVisualStyleBackColor = true;
+            // 
             // LoginnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 272);
+            this.Controls.Add(this.chkIsAdmin);
+            this.Controls.Add(this.btnOpenAdmin);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegister);
@@ -159,7 +169,8 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Button btnOpenAdmin;
+        private System.Windows.Forms.CheckBox chkIsAdmin;
     }
 }

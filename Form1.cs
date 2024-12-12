@@ -136,15 +136,23 @@ namespace PollingSystem
                 {
                     if (rb.Checked)
                     {
-                        // Update the vote count for the selected choice in the database
                         using (SqlConnection connection = new SqlConnection(connectionString))
                         {
-                            string updateVoteQuery = "UPDATE Votes SET VoteCount = VoteCount + 1 WHERE PollID = @PollID AND VoteChoice = @VoteChoice";
-                            SqlCommand command = new SqlCommand(updateVoteQuery, connection);
-                            command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Use actual PollID
-                            command.Parameters.AddWithValue("@VoteChoice", rb.Text);
                             connection.Open();
-                            command.ExecuteNonQuery();
+
+                            // Update the vote count for the selected choice in the database
+                            string updateVoteQuery = "UPDATE Votes SET VoteCount = VoteCount + 1 WHERE PollID = @PollID AND VoteChoice = @VoteChoice";
+                            using (SqlCommand command = new SqlCommand(updateVoteQuery, connection))
+                            {
+                                command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Use actual PollID
+                                command.Parameters.AddWithValue("@VoteChoice", rb.Text);
+                                command.ExecuteNonQuery();
+                            }
+
+                          
+                               
+                               
+                            }
                         }
 
                         // Update the local Votes dictionary for the selected poll
@@ -154,7 +162,7 @@ namespace PollingSystem
                         }
                         else
                         {
-                            selectedPoll.Votes[rb.Text] = 1;  // If not present, initialize the vote count to 1
+                            selectedPoll.Votes[rb.Text] = 1; // If not present, initialize the vote count to 1
                         }
 
                         // Show success message
@@ -165,13 +173,12 @@ namespace PollingSystem
                         break; // Exit the loop once a vote is submitted
                     }
                 }
-            }
+            
             else
             {
                 MessageBox.Show("Please select a poll to vote on.");
             }
         }
-
         private void UpdatePollResultsChart(Poll selectedPoll)
         {
             // Clear the existing chart series and data

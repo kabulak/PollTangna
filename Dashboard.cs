@@ -31,8 +31,7 @@ namespace PollingSystem
             cmbCategories.Items.Add("News");
             cmbCategories.Items.Add("About");
             cmbCategories.Items.Add("Poll"); // Category: Poll
-            cmbCategories.Items.Add("sample2");
-            cmbCategories.Items.Add("sample3");
+
         }
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {
