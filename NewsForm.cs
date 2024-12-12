@@ -128,5 +128,10 @@ namespace PollingSystem
                 this.Close(); // Close the current NewsForm
             }
         }
+
+        private void flowLayoutPanelNews_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

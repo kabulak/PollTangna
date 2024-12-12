@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using System.Data.SqlClient;
 namespace PollingSystem
 {
     public partial class Form1 : Form
     {
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PollingDatabase.mdf;Integrated Security=True";
+
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace PollingSystem
             dashboard.Show();
         }
 
+
         private void lblCreatePoll_Click(object sender, EventArgs e)
         {
 
@@ -55,13 +58,17 @@ namespace PollingSystem
             string question = txtPollQuestion.Text.Trim();
             if (!string.IsNullOrEmpty(question) && lstChoices.Items.Count > 0)
             {
+                // Create a new poll and add choices
                 Poll poll = new Poll(question);
                 foreach (string choice in lstChoices.Items)
                 {
-                    poll.AddChoice(choice);
+                    poll.AddChoice(choice);  // Add each choice to the poll
                 }
+
+                // Add the poll to PollManager and the ComboBox
                 PollManager.Polls.Add(poll);
-                cmbPolls.Items.Add(question);
+                cmbPolls.Items.Add(question);  // Add the question to ComboBox
+
                 MessageBox.Show("Poll created successfully!");
 
                 // Clear inputs
@@ -74,49 +81,62 @@ namespace PollingSystem
 
         private void cmbPolls_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Clear existing radio buttons in the GroupBox
             grpChoices.Controls.Clear();
+
+            // Get the selected poll based on the selected index of the ComboBox
             int selectedIndex = cmbPolls.SelectedIndex;
             if (selectedIndex >= 0)
             {
+                // Get the selected poll from PollManager
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
-                int y = 20;
+
+                // Add the choices as radio buttons to the grpChoices GroupBox
+                int y = 20;  // Starting Y position for radio buttons
                 foreach (string choice in selectedPoll.Choices)
                 {
+                    // Create a new radio button for each choice
                     RadioButton rb = new RadioButton
                     {
                         Text = choice,
                         Location = new System.Drawing.Point(10, y),
                         AutoSize = true
                     };
+
+                    // Add the radio button to the GroupBox
                     grpChoices.Controls.Add(rb);
-                    y += 30;
+                    y += 30;  // Move the next radio button down for better spacing
                 }
             }
         }
 
         private void btnVote_Click(object sender, EventArgs e)
         {
-            // Proceed with voting functionality (no login check needed)
             int selectedIndex = cmbPolls.SelectedIndex;
-
             if (selectedIndex >= 0)
             {
-                // Get the selected poll from PollManager
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
 
-                // Loop through the radio buttons in the group box (choices for the poll)
                 foreach (RadioButton rb in grpChoices.Controls)
                 {
-                    // Check if this radio button is selected
                     if (rb.Checked)
                     {
-                        // Register the vote for the selected choice
-                        selectedPoll.Vote(rb.Text);
+                        // Update the vote count for the selected choice in the database
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            string updateVoteQuery = "UPDATE Votes SET VoteCount = VoteCount + 1 WHERE PollID = @PollID AND VoteChoice = @VoteChoice";
+                            SqlCommand command = new SqlCommand(updateVoteQuery, connection);
+                            command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Replace with actual PollID
+                            command.Parameters.AddWithValue("@VoteChoice", rb.Text);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        }
+
                         MessageBox.Show("Vote submitted successfully!");
 
-                        // Update the chart with new data after the vote
+                        // Update the chart with new data
                         UpdatePollResultsChart(selectedPoll);
-                        break; // Exit the loop once a vote is submitted
+                        break;
                     }
                 }
             }
@@ -217,13 +237,39 @@ namespace PollingSystem
             {
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
 
-                // Reset votes for the selected poll
-                selectedPoll.ResetVotes();
-
-                // Update the chart to reflect the reset
-                UpdatePollResultsChart(selectedPoll);
+                // Reset votes in the database
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string resetVotesQuery = "UPDATE Votes SET VoteCount = 0 WHERE PollID = @PollID";
+                    SqlCommand command = new SqlCommand(resetVotesQuery, connection);
+                    command.Parameters.AddWithValue("@PollID", selectedPoll.PollID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
 
                 MessageBox.Show("Poll results have been reset.");
+
+                // Update the chart with reset data
+                UpdatePollResultsChart(selectedPoll);
+            }
+        }
+
+        private void LoadPolls()
+        {
+            string query = "SELECT PollQuestion FROM Polls";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+
+                // Populate the ComboBox with Poll questions
+                cmbPolls.Items.Clear();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    cmbPolls.Items.Add(row["PollQuestion"].ToString());
+                }
             }
         }
 
@@ -231,6 +277,10 @@ namespace PollingSystem
         {
 
         }
+
+
+
+
 
         
   

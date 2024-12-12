@@ -27,6 +27,7 @@
             this.flowLayoutPanelNews.Name = "flowLayoutPanelNews";
             this.flowLayoutPanelNews.Size = new System.Drawing.Size(800, 600);
             this.flowLayoutPanelNews.TabIndex = 0;
+            this.flowLayoutPanelNews.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanelNews_Paint);
             // 
             // NewsForm
             // 
@@ -35,6 +36,7 @@
             this.Name = "NewsForm";
             this.Text = "News";
             this.ResumeLayout(false);
+
         }
     }
 }

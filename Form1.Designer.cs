@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblCreatePoll = new System.Windows.Forms.Label();
             this.lblPollQuestion = new System.Windows.Forms.Label();
             this.lblChoices = new System.Windows.Forms.Label();
@@ -116,7 +116,7 @@
             this.lstChoices.ForeColor = System.Drawing.SystemColors.InfoText;
             this.lstChoices.FormattingEnabled = true;
             this.lstChoices.ItemHeight = 17;
-            this.lstChoices.Location = new System.Drawing.Point(-1, 201);
+            this.lstChoices.Location = new System.Drawing.Point(16, 201);
             this.lstChoices.Name = "lstChoices";
             this.lstChoices.Size = new System.Drawing.Size(227, 138);
             this.lstChoices.TabIndex = 5;
@@ -153,7 +153,7 @@
             // 
             this.cmbPolls.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPolls.FormattingEnabled = true;
-            this.cmbPolls.Location = new System.Drawing.Point(636, 117);
+            this.cmbPolls.Location = new System.Drawing.Point(609, 116);
             this.cmbPolls.Name = "cmbPolls";
             this.cmbPolls.Size = new System.Drawing.Size(152, 25);
             this.cmbPolls.TabIndex = 8;
@@ -162,7 +162,7 @@
             // grpChoices
             // 
             this.grpChoices.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.grpChoices.Location = new System.Drawing.Point(607, 176);
+            this.grpChoices.Location = new System.Drawing.Point(595, 173);
             this.grpChoices.Name = "grpChoices";
             this.grpChoices.Size = new System.Drawing.Size(193, 176);
             this.grpChoices.TabIndex = 9;
@@ -175,7 +175,7 @@
             this.btnVote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVote.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnVote.ForeColor = System.Drawing.Color.White;
-            this.btnVote.Location = new System.Drawing.Point(667, 359);
+            this.btnVote.Location = new System.Drawing.Point(660, 358);
             this.btnVote.Name = "btnVote";
             this.btnVote.Size = new System.Drawing.Size(95, 33);
             this.btnVote.TabIndex = 10;
@@ -221,17 +221,17 @@
             // 
             this.pollResultsChart.BackColor = System.Drawing.Color.Aqua;
             this.pollResultsChart.BorderlineColor = System.Drawing.Color.WhiteSmoke;
-            chartArea1.Name = "ChartArea1";
-            this.pollResultsChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.pollResultsChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.pollResultsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.pollResultsChart.Legends.Add(legend2);
             this.pollResultsChart.Location = new System.Drawing.Point(263, 201);
             this.pollResultsChart.Name = "pollResultsChart";
             this.pollResultsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.pollResultsChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.pollResultsChart.Series.Add(series2);
             this.pollResultsChart.Size = new System.Drawing.Size(310, 140);
             this.pollResultsChart.TabIndex = 14;
             this.pollResultsChart.Text = "chart1";
@@ -272,7 +272,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.SteelBlue;
             this.panel4.Controls.Add(this.lblPollQuestion);
-            this.panel4.Location = new System.Drawing.Point(648, 85);
+            this.panel4.Location = new System.Drawing.Point(621, 84);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(140, 25);
             this.panel4.TabIndex = 18;
@@ -281,7 +281,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.SteelBlue;
             this.panel5.Controls.Add(this.lblChoices);
-            this.panel5.Location = new System.Drawing.Point(660, 146);
+            this.panel5.Location = new System.Drawing.Point(633, 144);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(113, 24);
             this.panel5.TabIndex = 19;
