@@ -45,11 +45,23 @@ namespace PollingSystem
 
         private void btnAddChoice_Click(object sender, EventArgs e)
         {
-            string choice = txtChoice.Text.Trim();
+            string choice = txtChoice.Text.Trim(); // Trim whitespace
             if (!string.IsNullOrEmpty(choice))
             {
-                lstChoices.Items.Add(choice);
-                txtChoice.Clear();
+                // Avoid adding duplicate choices
+                if (!lstChoices.Items.Contains(choice))
+                {
+                    lstChoices.Items.Add(choice);
+                    txtChoice.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("This choice has already been added.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choice cannot be empty.");
             }
         }
 
@@ -58,24 +70,27 @@ namespace PollingSystem
             string question = txtPollQuestion.Text.Trim();
             if (!string.IsNullOrEmpty(question) && lstChoices.Items.Count > 0)
             {
-                // Create a new poll and add choices
                 Poll poll = new Poll(question);
                 foreach (string choice in lstChoices.Items)
                 {
-                    poll.AddChoice(choice);  // Add each choice to the poll
+                    poll.AddChoice(choice);
                 }
-
-                // Add the poll to PollManager and the ComboBox
                 PollManager.Polls.Add(poll);
-                cmbPolls.Items.Add(question);  // Add the question to ComboBox
-
+                cmbPolls.Items.Add(question);
                 MessageBox.Show("Poll created successfully!");
 
                 // Clear inputs
                 txtPollQuestion.Clear();
                 lstChoices.Items.Clear();
+
+                // Reset the chart and choices group box
+                pollResultsChart.Series.Clear();
+                pollResultsChart.ChartAreas.Clear();
+                grpChoices.Controls.Clear();
             }
         }
+
+
 
 
 
@@ -292,19 +307,29 @@ namespace PollingSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Reset the poll list and other components
+            cmbPolls.Items.Clear();
+            grpChoices.Controls.Clear();
+            pollResultsChart.Series.Clear();
+            pollResultsChart.ChartAreas.Clear();
 
+            // Repopulate the poll list (cmbPolls)
+            foreach (var poll in PollManager.Polls)
+            {
+                cmbPolls.Items.Add(poll.Question);
+            }
         }
 
 
 
 
 
-        
-  
 
 
 
-private void Form1_KeyDown(object sender, KeyEventArgs e)
+
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             // Close the form when the ESC key is pressed
             if (e.KeyCode == Keys.Escape)
