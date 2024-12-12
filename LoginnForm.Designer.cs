@@ -120,7 +120,6 @@
             this.btnSkip.TabIndex = 18;
             this.btnSkip.Text = "Skip";
             this.btnSkip.UseVisualStyleBackColor = false;
-            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // lblMessage
             // 

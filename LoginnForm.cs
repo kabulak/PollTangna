@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace PollingSystem
 {
     public partial class LoginnForm : Form
     {
-        // Dictionary to store user credentials (username and password)
-        private static Dictionary<string, string> registeredUsers = new Dictionary<string, string>();
+        // Connection string to LocalDB or any SQL Server database
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Justine\Source\Repos\PollTangna\PollingDatabase.mdf;Integrated Security=True";
+
 
         public static bool IsLoggedIn { get; private set; } = false;
         public static string CurrentUser { get; private set; } = "Guest";
+
         public LoginnForm()
         {
             InitializeComponent();
@@ -33,21 +36,35 @@ namespace PollingSystem
                 return;
             }
 
-            if (registeredUsers.ContainsKey(username))
+            // Check if username already exists in the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                MessageBox.Show("Username already exists. Please choose a different one.", "Error");
-            }
-            else
-            {
-                registeredUsers.Add(username, password);
-                MessageBox.Show($"Registration successful for {username}! You can now log in.", "Success");
-                txtUsername.Clear();
-                txtPassword.Clear();
+                string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                SqlCommand command = new SqlCommand(checkUserQuery, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                int userCount = (int)command.ExecuteScalar();
 
-                // Debugging log
-                Console.WriteLine($"Registered Users: {string.Join(", ", registeredUsers.Keys)}");
+                if (userCount > 0)
+                {
+                    MessageBox.Show("Username already exists. Please choose a different one.", "Error");
+                }
+                else
+                {
+                    // Insert the new user into the database
+                    string insertQuery = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    insertCommand.Parameters.AddWithValue("@Username", username);
+                    insertCommand.Parameters.AddWithValue("@Password", password);
+                    insertCommand.ExecuteNonQuery();
+
+                    MessageBox.Show($"Registration successful for {username}! You can now log in.", "Success");
+                    txtUsername.Clear();
+                    txtPassword.Clear();
+                }
             }
         }
+
 
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -61,11 +78,20 @@ namespace PollingSystem
                 return;
             }
 
-            // Check if the username exists and the password matches
-            if (registeredUsers.ContainsKey(username))
+            // Check if the username exists and the password matches in the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                if (registeredUsers[username] == password)
+                string loginQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
+                SqlCommand command = new SqlCommand(loginQuery, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+                connection.Open();
+
+                int userCount = (int)command.ExecuteScalar();
+
+                if (userCount > 0)
                 {
+                    // User is logged in successfully
                     IsLoggedIn = true;
                     CurrentUser = username;
                     MessageBox.Show($"Welcome back, {username}!", "Success");
@@ -74,23 +100,11 @@ namespace PollingSystem
                 }
                 else
                 {
-                    MessageBox.Show("Invalid password. Please try again.", "Error");
+                    MessageBox.Show("Invalid username or password. Please try again.", "Error");
                 }
             }
-            else
-            {
-                MessageBox.Show("Username not found. Please register or try again.", "Error");
-            }
-        }
-        
-
-        private void btnSkip_Click(object sender, EventArgs e)
-        {
-            IsLoggedIn = false;
-            CurrentUser = "Guest";
-            MessageBox.Show("Continuing as Guest.", "Info");
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }
+
+
