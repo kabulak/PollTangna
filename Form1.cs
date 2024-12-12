@@ -126,17 +126,28 @@ namespace PollingSystem
                         {
                             string updateVoteQuery = "UPDATE Votes SET VoteCount = VoteCount + 1 WHERE PollID = @PollID AND VoteChoice = @VoteChoice";
                             SqlCommand command = new SqlCommand(updateVoteQuery, connection);
-                            command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Replace with actual PollID
+                            command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Use actual PollID
                             command.Parameters.AddWithValue("@VoteChoice", rb.Text);
                             connection.Open();
                             command.ExecuteNonQuery();
                         }
 
+                        // Update the local Votes dictionary for the selected poll
+                        if (selectedPoll.Votes.ContainsKey(rb.Text))
+                        {
+                            selectedPoll.Votes[rb.Text]++;
+                        }
+                        else
+                        {
+                            selectedPoll.Votes[rb.Text] = 1;  // If not present, initialize the vote count to 1
+                        }
+
+                        // Show success message
                         MessageBox.Show("Vote submitted successfully!");
 
                         // Update the chart with new data
                         UpdatePollResultsChart(selectedPoll);
-                        break;
+                        break; // Exit the loop once a vote is submitted
                     }
                 }
             }
@@ -168,7 +179,7 @@ namespace PollingSystem
             // Add the choices and their corresponding vote counts to the chart
             foreach (var choice in selectedPoll.Choices)
             {
-                int voteCount = selectedPoll.Votes[choice];
+                int voteCount = selectedPoll.Votes.ContainsKey(choice) ? selectedPoll.Votes[choice] : 0;
                 series.Points.AddXY(choice, voteCount);
             }
 
@@ -247,9 +258,15 @@ namespace PollingSystem
                     command.ExecuteNonQuery();
                 }
 
+                // Reset the local Votes dictionary for the selected poll
+                foreach (var choice in selectedPoll.Choices)
+                {
+                    selectedPoll.Votes[choice] = 0;  // Reset each choice's vote count to 0
+                }
+
                 MessageBox.Show("Poll results have been reset.");
 
-                // Update the chart with reset data
+                // Update the chart with the reset data
                 UpdatePollResultsChart(selectedPoll);
             }
         }
