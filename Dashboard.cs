@@ -16,22 +16,21 @@ namespace PollingSystem
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(Dashboard_KeyDown);
-            this.KeyPreview = true;  // Make sure this is set to true
+            this.KeyPreview = true;  
             this.ControlBox = false;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-            this.StartPosition = FormStartPosition.CenterScreen; // Optional: Center the form on the screen
-            this.FormBorderStyle = FormBorderStyle.FixedDialog; // Disable resizing
+            this.StartPosition = FormStartPosition.CenterScreen; 
+            this.FormBorderStyle = FormBorderStyle.FixedDialog; 
             InitializeCategories();
         }
 
         private void InitializeCategories()
         {
-            // Populate the ComboBox with categories
+           
             cmbCategories.Items.Add("News");
             cmbCategories.Items.Add("About");
-            cmbCategories.Items.Add("Poll"); // Category: Poll
-
+            cmbCategories.Items.Add("Poll");
         }
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {

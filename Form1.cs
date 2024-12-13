@@ -18,21 +18,21 @@ namespace PollingSystem
         public Form1()
         {
             InitializeComponent();
-            this.KeyPreview = true;  // Make sure this is set to true
+            this.KeyPreview = true;  
             this.ControlBox = false;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-            this.StartPosition = FormStartPosition.CenterScreen; // Optional: Center the form on the screen
-            this.FormBorderStyle = FormBorderStyle.FixedDialog; // Disable resizing
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog; 
             this.FormClosing += Form1_FormClosing;
 
-            // Wire the KeyDown event to the handler
+            
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Show the Dashboard form when Form1 is closed
+            
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
         }
@@ -45,10 +45,10 @@ namespace PollingSystem
 
         private void btnAddChoice_Click(object sender, EventArgs e)
         {
-            string choice = txtChoice.Text.Trim(); // Trim whitespace
+            string choice = txtChoice.Text.Trim(); 
             if (!string.IsNullOrEmpty(choice))
             {
-                // Avoid adding duplicate choices
+               
                 if (!lstChoices.Items.Contains(choice))
                 {
                     lstChoices.Items.Add(choice);
@@ -79,7 +79,7 @@ namespace PollingSystem
                 cmbPolls.Items.Add(question);
                 MessageBox.Show("Poll created successfully!");
 
-                // Clear inputs
+                
                 txtPollQuestion.Clear();
                 lstChoices.Items.Clear();
 
@@ -96,21 +96,21 @@ namespace PollingSystem
 
         private void cmbPolls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Clear existing radio buttons in the GroupBox
+           
             grpChoices.Controls.Clear();
 
-            // Get the selected poll based on the selected index of the ComboBox
+            
             int selectedIndex = cmbPolls.SelectedIndex;
             if (selectedIndex >= 0)
             {
-                // Get the selected poll from PollManager
+               
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
 
-                // Add the choices as radio buttons to the grpChoices GroupBox
-                int y = 20;  // Starting Y position for radio buttons
+               
+                int y = 20;  
                 foreach (string choice in selectedPoll.Choices)
                 {
-                    // Create a new radio button for each choice
+                    
                     RadioButton rb = new RadioButton
                     {
                         Text = choice,
@@ -118,9 +118,9 @@ namespace PollingSystem
                         AutoSize = true
                     };
 
-                    // Add the radio button to the GroupBox
+                   
                     grpChoices.Controls.Add(rb);
-                    y += 30;  // Move the next radio button down for better spacing
+                    y += 30;  
                 }
             }
         }
@@ -140,11 +140,10 @@ namespace PollingSystem
                         {
                             connection.Open();
 
-                            // Update the vote count for the selected choice in the database
                             string updateVoteQuery = "UPDATE Votes SET VoteCount = VoteCount + 1 WHERE PollID = @PollID AND VoteChoice = @VoteChoice";
                             using (SqlCommand command = new SqlCommand(updateVoteQuery, connection))
                             {
-                                command.Parameters.AddWithValue("@PollID", selectedPoll.PollID); // Use actual PollID
+                                command.Parameters.AddWithValue("@PollID", selectedPoll.PollID);
                                 command.Parameters.AddWithValue("@VoteChoice", rb.Text);
                                 command.ExecuteNonQuery();
                             }
@@ -155,22 +154,22 @@ namespace PollingSystem
                             }
                         }
 
-                        // Update the local Votes dictionary for the selected poll
+                     
                         if (selectedPoll.Votes.ContainsKey(rb.Text))
                         {
                             selectedPoll.Votes[rb.Text]++;
                         }
                         else
                         {
-                            selectedPoll.Votes[rb.Text] = 1; // If not present, initialize the vote count to 1
+                            selectedPoll.Votes[rb.Text] = 1; 
                         }
 
-                        // Show success message
+                       
                         MessageBox.Show("Vote submitted successfully!");
 
-                        // Update the chart with new data
+                      
                         UpdatePollResultsChart(selectedPoll);
-                        break; // Exit the loop once a vote is submitted
+                        break; 
                     }
                 }
             

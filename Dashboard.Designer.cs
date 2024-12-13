@@ -47,11 +47,11 @@
             // 
             // lblCategory
             // 
-            this.lblCategory.BackColor = System.Drawing.Color.SteelBlue;
+            this.lblCategory.BackColor = System.Drawing.Color.Gray;
             this.lblCategory.Controls.Add(this.lblPollQuestion);
-            this.lblCategory.Location = new System.Drawing.Point(91, 12);
+            this.lblCategory.Location = new System.Drawing.Point(69, 12);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(109, 25);
+            this.lblCategory.Size = new System.Drawing.Size(152, 25);
             this.lblCategory.TabIndex = 19;
             // 
             // lblPollQuestion
@@ -59,7 +59,7 @@
             this.lblPollQuestion.AutoSize = true;
             this.lblPollQuestion.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblPollQuestion.ForeColor = System.Drawing.Color.White;
-            this.lblPollQuestion.Location = new System.Drawing.Point(7, 0);
+            this.lblPollQuestion.Location = new System.Drawing.Point(23, 0);
             this.lblPollQuestion.Name = "lblPollQuestion";
             this.lblPollQuestion.Size = new System.Drawing.Size(94, 25);
             this.lblPollQuestion.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSelect.BackColor = System.Drawing.Color.Olive;
             this.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnSelect.ForeColor = System.Drawing.Color.White;
@@ -97,6 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(317, 177);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnSelect);

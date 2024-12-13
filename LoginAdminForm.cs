@@ -18,23 +18,24 @@ namespace PollingSystem
         public LoginAdminForm()
         {
             InitializeComponent();
-            this.txtUsername.Location = new System.Drawing.Point(40, 25);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(123, 20);
-            this.txtUsername.TabIndex = 0;
-            this.btnAdminLogin.Location = new System.Drawing.Point(40, 81);
-            this.btnAdminLogin.Name = "btnAdminLogin";
-            this.btnAdminLogin.Size = new System.Drawing.Size(100, 23);
+
             this.btnAdminLogin.TabIndex = 1;
-            this.btnAdminLogin.UseVisualStyleBackColor = true;
             this.btnAdminLogin.Click += new System.EventHandler(this.btnAdminLogin_Click);
+           
+            this.txtPassword.Name = "txtPassword";
           
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.PasswordChar = '*'; 
+
+            
+            this.Controls.Add(this.txtPassword);
+
         }
 
         private void LoginAdminForm_Load(object sender, EventArgs e)
         {
             LoadUsers();
-            dgvUsers.Visible = false; // Hide DataGridView initially
+            dgvUsers.Visible = false; 
         
         }
 
@@ -44,7 +45,7 @@ namespace PollingSystem
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    // Select only the Username column
+                   
                     string query = "SELECT Username FROM Users";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable usersTable = new DataTable();
@@ -52,7 +53,7 @@ namespace PollingSystem
 
                     dgvUsers.DataSource = usersTable;
 
-                    // Adjust DataGridView column widths to fit the content
+                   
                     dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
             }
@@ -91,15 +92,15 @@ namespace PollingSystem
                         string storedPassword = reader["Password"].ToString();
                         bool isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
 
-                        // Validate admin credentials
+                        
                         if (isAdmin && storedPassword == enteredPassword)
                         {
                             MessageBox.Show("Admin login successful!", "Success");
 
-                            // Make dgvUsers visible
+                          
                             dgvUsers.Visible = true;
 
-                            // Refresh user data
+                           
                             LoadUsers();
                         }
                         else
@@ -127,10 +128,10 @@ namespace PollingSystem
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count > 0) // Ensure a row is selected
+            if (dgvUsers.SelectedRows.Count > 0) 
             {
-                // Retrieve the Username value from the selected row
-                string username = dgvUsers.SelectedRows[0].Cells[0].Value.ToString(); // Get the first column value (Username)
+               
+                string username = dgvUsers.SelectedRows[0].Cells[0].Value.ToString();
 
                 try
                 {
@@ -143,7 +144,7 @@ namespace PollingSystem
                         command.ExecuteNonQuery();
 
                         MessageBox.Show($"User '{username}' deleted successfully.", "Success");
-                        LoadUsers(); // Refresh the DataGridView
+                        LoadUsers();
                     }
                 }
                 catch (Exception ex)
@@ -182,7 +183,7 @@ namespace PollingSystem
 
         private void btnResfresh_Click(object sender, EventArgs e)
         {
-            LoadUsers(); // Refresh the DataGridView
+            LoadUsers(); 
         }
     }
 }

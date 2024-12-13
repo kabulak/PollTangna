@@ -38,7 +38,6 @@ namespace PollingSystem
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnOpenAdmin = new System.Windows.Forms.Button();
-            this.chkIsAdmin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -61,7 +60,7 @@ namespace PollingSystem
             // 
             // btnRegister
             // 
-            this.btnRegister.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRegister.BackColor = System.Drawing.Color.Olive;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnRegister.ForeColor = System.Drawing.Color.White;
@@ -84,7 +83,7 @@ namespace PollingSystem
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnLogin.BackColor = System.Drawing.Color.Olive;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
@@ -120,30 +119,22 @@ namespace PollingSystem
             // 
             // btnOpenAdmin
             // 
-            this.btnOpenAdmin.Location = new System.Drawing.Point(137, 171);
+            this.btnOpenAdmin.BackColor = System.Drawing.Color.Olive;
+            this.btnOpenAdmin.ForeColor = System.Drawing.Color.White;
+            this.btnOpenAdmin.Location = new System.Drawing.Point(132, 142);
             this.btnOpenAdmin.Name = "btnOpenAdmin";
-            this.btnOpenAdmin.Size = new System.Drawing.Size(82, 23);
+            this.btnOpenAdmin.Size = new System.Drawing.Size(99, 39);
             this.btnOpenAdmin.TabIndex = 20;
             this.btnOpenAdmin.Text = "LoginAdmin";
-            this.btnOpenAdmin.UseVisualStyleBackColor = true;
+            this.btnOpenAdmin.UseVisualStyleBackColor = false;
             this.btnOpenAdmin.Click += new System.EventHandler(this.btnOpenAdmin_Click);
-            // 
-            // chkIsAdmin
-            // 
-            this.chkIsAdmin.AutoSize = true;
-            this.chkIsAdmin.Location = new System.Drawing.Point(139, 200);
-            this.chkIsAdmin.Name = "chkIsAdmin";
-            this.chkIsAdmin.Size = new System.Drawing.Size(29, 17);
-            this.chkIsAdmin.TabIndex = 21;
-            this.chkIsAdmin.Text = " ";
-            this.chkIsAdmin.UseVisualStyleBackColor = true;
             // 
             // LoginnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(601, 272);
-            this.Controls.Add(this.chkIsAdmin);
             this.Controls.Add(this.btnOpenAdmin);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.label2);
@@ -153,6 +144,7 @@ namespace PollingSystem
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "LoginnForm";
             this.Text = "LoginnForm";
             this.ResumeLayout(false);
@@ -171,6 +163,5 @@ namespace PollingSystem
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnOpenAdmin;
-        private System.Windows.Forms.CheckBox chkIsAdmin;
     }
 }
