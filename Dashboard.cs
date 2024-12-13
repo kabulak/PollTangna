@@ -16,18 +16,18 @@ namespace PollingSystem
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(Dashboard_KeyDown);
-            this.KeyPreview = true;  
+            this.KeyPreview = true;
             this.ControlBox = false;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-            this.StartPosition = FormStartPosition.CenterScreen; 
-            this.FormBorderStyle = FormBorderStyle.FixedDialog; 
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
             InitializeCategories();
         }
 
         private void InitializeCategories()
         {
-           
+
             cmbCategories.Items.Add("News");
             cmbCategories.Items.Add("About");
             cmbCategories.Items.Add("Poll");
@@ -50,11 +50,11 @@ namespace PollingSystem
                 this.Close();
             }
         }
-    
 
 
 
-private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Show the Dashboard form when Form1 is closed
             Dashboard dashboard = new Dashboard();
@@ -117,17 +117,19 @@ private void Form1_FormClosing(object sender, FormClosingEventArgs e)
             }
             else
             {
-                // Display a message for other categories
+
                 MessageBox.Show($"Displaying content for {selectedCategory} category.");
             }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Show the Login form and close the current Dashboard form
-            LoginnForm loginForm = new LoginnForm();
-            loginForm.Show();  // Show the Login form
-            this.Close();  // Close the current Dashboard form
+
+            // Close the current Dashboard
+            this.Close();
+
+            // Ensure LoginnForm is reopened from a single instance
+            Application.Restart(); // Restarts the application, returning to the initial state
         }
     }
 }

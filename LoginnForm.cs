@@ -90,7 +90,6 @@ namespace PollingSystem
                 return;
             }
 
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string loginQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
@@ -103,12 +102,18 @@ namespace PollingSystem
 
                 if (userCount > 0)
                 {
-
                     IsLoggedIn = true;
                     CurrentUser = username;
                     MessageBox.Show($"Welcome back, {username}!", "Success");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+
+                  
+                    this.Hide();
+
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.ShowDialog(); 
+
+                    
+                    this.Show();
                 }
                 else
                 {
