@@ -34,6 +34,8 @@ namespace PollingSystem
         private void LoginAdminForm_Load(object sender, EventArgs e)
         {
             LoadUsers();
+            dgvUsers.Visible = false; // Hide DataGridView initially
+        
         }
 
         private void LoadUsers()
@@ -65,7 +67,7 @@ namespace PollingSystem
         private void btnAdminLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
-            string enteredPassword = txtPassword.Text;
+            string enteredPassword = txtPassword.Text.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(enteredPassword))
             {
@@ -73,23 +75,50 @@ namespace PollingSystem
                 return;
             }
 
-            // Hardcoded admin credentials
-            string adminUsername = "Justine";
-            string adminPassword = "velskud";
-
-            if (username == adminUsername && enteredPassword == adminPassword)
+            try
             {
-                MessageBox.Show("Admin login successful!", "Success");
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT Password, IsAdmin FROM Users WHERE Username = @Username";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
 
-                // Keep the form open and load the voting log
-                
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string storedPassword = reader["Password"].ToString();
+                        bool isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
+
+                        // Validate admin credentials
+                        if (isAdmin && storedPassword == enteredPassword)
+                        {
+                            MessageBox.Show("Admin login successful!", "Success");
+
+                            // Make dgvUsers visible
+                            dgvUsers.Visible = true;
+
+                            // Refresh user data
+                            LoadUsers();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid admin credentials.", "Error");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User not found.", "Error");
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid admin credentials.", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error");
             }
         }
-        
+
 
         private void dgvVotesLog_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
