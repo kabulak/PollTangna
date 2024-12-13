@@ -23,13 +23,19 @@ namespace PollingSystem
         public LoginnForm()
         {
             InitializeComponent();
-         
-            this.txtPassword.Name = "txtPassword";
-           
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.PasswordChar = '*'; 
 
-           
+            // For Exit 
+            this.KeyDown += new KeyEventHandler(LoginnForm_KeyDown);
+            this.KeyPreview = true;
+            this.ControlBox = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.PasswordChar = '*';
             this.Controls.Add(this.txtPassword);
         }
 
@@ -48,7 +54,7 @@ namespace PollingSystem
             {
                 connection.Open();
 
-              
+
                 string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
                 SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
                 checkCommand.Parameters.AddWithValue("@Username", username);
@@ -60,7 +66,7 @@ namespace PollingSystem
                 }
                 else
                 {
-                    
+
                     string insertQuery = "INSERT INTO Users (Username, Password, IsAdmin) VALUES (@Username, @Password, 0)";
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@Username", username);
@@ -84,7 +90,7 @@ namespace PollingSystem
                 return;
             }
 
-            
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string loginQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
@@ -97,11 +103,11 @@ namespace PollingSystem
 
                 if (userCount > 0)
                 {
-                    
+
                     IsLoggedIn = true;
                     CurrentUser = username;
                     MessageBox.Show($"Welcome back, {username}!", "Success");
-                    this.DialogResult = DialogResult.OK; 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
@@ -115,6 +121,14 @@ namespace PollingSystem
         {
             LoginAdminForm adminForm = new LoginAdminForm();
             adminForm.Show();
+        }
+        private void LoginnForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Close the form when the ESC key is pressed
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

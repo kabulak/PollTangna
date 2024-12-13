@@ -47,7 +47,7 @@
             // 
             // lblCategory
             // 
-            this.lblCategory.BackColor = System.Drawing.Color.Gray;
+            this.lblCategory.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblCategory.Controls.Add(this.lblPollQuestion);
             this.lblCategory.Location = new System.Drawing.Point(69, 12);
             this.lblCategory.Name = "lblCategory";
@@ -61,9 +61,9 @@
             this.lblPollQuestion.ForeColor = System.Drawing.Color.White;
             this.lblPollQuestion.Location = new System.Drawing.Point(23, 0);
             this.lblPollQuestion.Name = "lblPollQuestion";
-            this.lblPollQuestion.Size = new System.Drawing.Size(94, 25);
+            this.lblPollQuestion.Size = new System.Drawing.Size(101, 25);
             this.lblPollQuestion.TabIndex = 1;
-            this.lblPollQuestion.Text = "Category";
+            this.lblPollQuestion.Text = "Poll-Wave";
             // 
             // btnSelect
             // 

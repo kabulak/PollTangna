@@ -66,7 +66,7 @@ namespace PollingSystem
             this.btnRegister.ForeColor = System.Drawing.Color.White;
             this.btnRegister.Location = new System.Drawing.Point(85, 80);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(92, 34);
+            this.btnRegister.Size = new System.Drawing.Size(92, 43);
             this.btnRegister.TabIndex = 15;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -89,7 +89,7 @@ namespace PollingSystem
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(202, 80);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(94, 34);
+            this.btnLogin.Size = new System.Drawing.Size(94, 43);
             this.btnLogin.TabIndex = 13;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -120,12 +120,13 @@ namespace PollingSystem
             // btnOpenAdmin
             // 
             this.btnOpenAdmin.BackColor = System.Drawing.Color.Olive;
+            this.btnOpenAdmin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnOpenAdmin.ForeColor = System.Drawing.Color.White;
             this.btnOpenAdmin.Location = new System.Drawing.Point(132, 142);
             this.btnOpenAdmin.Name = "btnOpenAdmin";
-            this.btnOpenAdmin.Size = new System.Drawing.Size(99, 39);
+            this.btnOpenAdmin.Size = new System.Drawing.Size(117, 50);
             this.btnOpenAdmin.TabIndex = 20;
-            this.btnOpenAdmin.Text = "LoginAdmin";
+            this.btnOpenAdmin.Text = "Login Admin";
             this.btnOpenAdmin.UseVisualStyleBackColor = false;
             this.btnOpenAdmin.Click += new System.EventHandler(this.btnOpenAdmin_Click);
             // 
@@ -134,7 +135,7 @@ namespace PollingSystem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(601, 272);
+            this.ClientSize = new System.Drawing.Size(498, 265);
             this.Controls.Add(this.btnOpenAdmin);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.label2);

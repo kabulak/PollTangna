@@ -91,7 +91,7 @@ namespace PollingSystem
             this.btnDeleteUser.BackColor = System.Drawing.Color.Olive;
             this.btnDeleteUser.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnDeleteUser.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDeleteUser.Location = new System.Drawing.Point(246, 102);
+            this.btnDeleteUser.Location = new System.Drawing.Point(254, 102);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(113, 32);
             this.btnDeleteUser.TabIndex = 4;
@@ -104,7 +104,7 @@ namespace PollingSystem
             this.btnResfresh.BackColor = System.Drawing.Color.Olive;
             this.btnResfresh.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnResfresh.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnResfresh.Location = new System.Drawing.Point(153, 322);
+            this.btnResfresh.Location = new System.Drawing.Point(148, 306);
             this.btnResfresh.Name = "btnResfresh";
             this.btnResfresh.Size = new System.Drawing.Size(100, 52);
             this.btnResfresh.TabIndex = 5;
@@ -114,7 +114,7 @@ namespace PollingSystem
             // 
             // btnAddChoice
             // 
-            this.btnAddChoice.BackColor = System.Drawing.Color.Gray;
+            this.btnAddChoice.BackColor = System.Drawing.Color.DarkKhaki;
             this.btnAddChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddChoice.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddChoice.ForeColor = System.Drawing.Color.White;
@@ -127,7 +127,7 @@ namespace PollingSystem
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Gray;
+            this.button1.BackColor = System.Drawing.Color.DarkKhaki;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -143,7 +143,7 @@ namespace PollingSystem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(800, 506);
+            this.ClientSize = new System.Drawing.Size(598, 383);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddChoice);
             this.Controls.Add(this.btnResfresh);

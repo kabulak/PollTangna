@@ -21,22 +21,28 @@ namespace PollingSystem
 
             this.btnAdminLogin.TabIndex = 1;
             this.btnAdminLogin.Click += new System.EventHandler(this.btnAdminLogin_Click);
-           
-            this.txtPassword.Name = "txtPassword";
-          
-            this.txtPassword.TabIndex = 1;
-            this.txtPassword.PasswordChar = '*'; 
 
-            
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.PasswordChar = '*';
             this.Controls.Add(this.txtPassword);
+
+            // For Exit key down
+            this.KeyDown += new KeyEventHandler(LoginAdminForm_KeyDown);
+            this.KeyPreview = true;
+            this.ControlBox = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
         }
 
         private void LoginAdminForm_Load(object sender, EventArgs e)
         {
             LoadUsers();
-            dgvUsers.Visible = false; 
-        
+            dgvUsers.Visible = false;
+
         }
 
         private void LoadUsers()
@@ -45,7 +51,7 @@ namespace PollingSystem
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                   
+
                     string query = "SELECT Username FROM Users";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable usersTable = new DataTable();
@@ -53,7 +59,7 @@ namespace PollingSystem
 
                     dgvUsers.DataSource = usersTable;
 
-                   
+
                     dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
             }
@@ -92,15 +98,15 @@ namespace PollingSystem
                         string storedPassword = reader["Password"].ToString();
                         bool isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
 
-                        
+
                         if (isAdmin && storedPassword == enteredPassword)
                         {
                             MessageBox.Show("Admin login successful!", "Success");
 
-                          
+
                             dgvUsers.Visible = true;
 
-                           
+
                             LoadUsers();
                         }
                         else
@@ -128,9 +134,9 @@ namespace PollingSystem
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count > 0) 
+            if (dgvUsers.SelectedRows.Count > 0)
             {
-               
+
                 string username = dgvUsers.SelectedRows[0].Cells[0].Value.ToString();
 
                 try
@@ -183,7 +189,15 @@ namespace PollingSystem
 
         private void btnResfresh_Click(object sender, EventArgs e)
         {
-            LoadUsers(); 
+            LoadUsers();
+        }
+     private void LoginAdminForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Close the form when the ESC key is pressed
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

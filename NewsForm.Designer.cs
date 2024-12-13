@@ -22,6 +22,7 @@
             // flowLayoutPanelNews
             // 
             this.flowLayoutPanelNews.AutoScroll = true;
+            this.flowLayoutPanelNews.BackColor = System.Drawing.Color.Khaki;
             this.flowLayoutPanelNews.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelNews.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelNews.Name = "flowLayoutPanelNews";

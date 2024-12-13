@@ -231,11 +231,11 @@ namespace PollingSystem
                 pollResultsChart.Series.Clear();
                 pollResultsChart.ChartAreas.Clear();
 
-                // Create a new chart area for the chart
+                
                 ChartArea chartArea = new ChartArea();
                 pollResultsChart.ChartAreas.Add(chartArea);
 
-                // Create a new series for displaying the results
+               
                 Series series = new Series
                 {
                     Name = "Poll Results",
@@ -244,14 +244,14 @@ namespace PollingSystem
                 };
                 pollResultsChart.Series.Add(series);
 
-                // Add the choices and their corresponding vote counts to the chart
+                
                 foreach (var choice in selectedPoll.Choices)
                 {
                     int voteCount = selectedPoll.Votes[choice];
                     series.Points.AddXY(choice, voteCount);
                 }
 
-                // Set chart labels and title
+               
                 pollResultsChart.Titles.Clear();
                 pollResultsChart.Titles.Add($"Results for: {selectedPoll.Question}");
             }
@@ -269,7 +269,7 @@ namespace PollingSystem
             {
                 Poll selectedPoll = PollManager.Polls[selectedIndex];
 
-                // Reset votes in the database
+               
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     string resetVotesQuery = "UPDATE Votes SET VoteCount = 0 WHERE PollID = @PollID";
@@ -279,7 +279,7 @@ namespace PollingSystem
                     command.ExecuteNonQuery();
                 }
 
-                // Reset the local Votes dictionary for the selected poll
+               
                 foreach (var choice in selectedPoll.Choices)
                 {
                     selectedPoll.Votes[choice] = 0;  // Reset each choice's vote count to 0

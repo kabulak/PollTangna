@@ -32,7 +32,7 @@ namespace PollingSystem
         private void AboutForm_Load(object sender, EventArgs e)
         {
             // You can set up the text about the application here, if needed
-            lblAbout.Text = "Welcome to the Polling System!\n\n" +
+            lblAbout.Text = "Welcome to the Poll-Wave!\n\n" +
                             "in this polling you can create polls with multiple options.\n\n" +
                             "You can vote on the poll, and the system updates the results immediately.\n\n" +
                             "*****************____________****************.\n\n" +
