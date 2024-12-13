@@ -42,17 +42,21 @@ namespace PollingSystem
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT UserID, Username FROM Users WHERE IsAdmin = 0"; // Exclude admin accounts
+                    // Select only the Username column
+                    string query = "SELECT Username FROM Users";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable usersTable = new DataTable();
                     adapter.Fill(usersTable);
 
                     dgvUsers.DataSource = usersTable;
+
+                    // Adjust DataGridView column widths to fit the content
+                    dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading users: {ex.Message}", "Error");
+                MessageBox.Show($"Error loading users: {ex.Message}", "Error");
             }
         }
 
@@ -94,23 +98,36 @@ namespace PollingSystem
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count == 0)
+            if (dgvUsers.SelectedRows.Count > 0) // Ensure a row is selected
             {
-                MessageBox.Show("Please select a user to delete.", "Warning");
-                return;
+                // Retrieve the Username value from the selected row
+                string username = dgvUsers.SelectedRows[0].Cells[0].Value.ToString(); // Get the first column value (Username)
+
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM Users WHERE Username = @Username";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Username", username);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show($"User '{username}' deleted successfully.", "Success");
+                        LoadUsers(); // Refresh the DataGridView
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting user: {ex.Message}", "Error");
+                }
             }
-
-            var selectedRow = dgvUsers.SelectedRows[0];
-            int userId = Convert.ToInt32(selectedRow.Cells["UserID"].Value);
-            string username = selectedRow.Cells["Username"].Value.ToString();
-
-            var confirmResult = MessageBox.Show($"Are you sure you want to delete the user '{username}'?", "Confirm Deletion", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
+            else
             {
-                DeleteUser(userId);
-                LoadUsers(); // Refresh the list
+                MessageBox.Show("Please select a user to delete.", "Error");
             }
         }
+
 
         private void DeleteUser(int userId)
         {
@@ -132,6 +149,11 @@ namespace PollingSystem
             {
                 MessageBox.Show($"An error occurred while deleting the user: {ex.Message}", "Error");
             }
+        }
+
+        private void btnResfresh_Click(object sender, EventArgs e)
+        {
+            LoadUsers(); // Refresh the DataGridView
         }
     }
 }

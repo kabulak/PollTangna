@@ -42,6 +42,7 @@ namespace PollingSystem
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnDeleteUser = new System.Windows.Forms.Button();
+            this.btnResfresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,11 +89,22 @@ namespace PollingSystem
             this.btnDeleteUser.UseVisualStyleBackColor = true;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
+            // btnResfresh
+            // 
+            this.btnResfresh.Location = new System.Drawing.Point(199, 289);
+            this.btnResfresh.Name = "btnResfresh";
+            this.btnResfresh.Size = new System.Drawing.Size(100, 23);
+            this.btnResfresh.TabIndex = 5;
+            this.btnResfresh.Text = "Resfresh";
+            this.btnResfresh.UseVisualStyleBackColor = true;
+            this.btnResfresh.Click += new System.EventHandler(this.btnResfresh_Click);
+            // 
             // LoginAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnResfresh);
             this.Controls.Add(this.btnDeleteUser);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.dgvUsers);
@@ -114,5 +126,6 @@ namespace PollingSystem
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button btnResfresh;
     }
 }
